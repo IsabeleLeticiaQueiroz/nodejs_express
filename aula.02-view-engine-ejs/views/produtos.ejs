@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h2>Conheca nossos produtos</h2>
+        <hr>
+        <% if (produto){ %>
+        <h4>Você pesquisou por: <strong><%= produto %></strong></h4>
+        <p>Resultados da sua pesquisa:</p>
+        <% } %>
+        <!-- condicao p verificar se o produto nao foi passado -->
+         <!-- ao concatenar uma var utilizar o = dps da tag, caso nao, apenas a tag comum para ser um codigo js -->
+             <% if (!produto){ %>
+                <p><strong>Catálogo:</strong> <%= listaProdutos %></p>
+            <%  } %>
+        <!-- for each para percorrer a lista de produtos -->
+         <% if(!produto){ %>
+            <% listaProdutos.forEach((produto) => { %>
+            <p><a href="/produtos/<%= produto %>"><%= produto %></p></a>
+            <% }) %>
+        <%}%>
+    </div>
+</body>
+</html>

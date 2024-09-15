@@ -1,0 +1,14 @@
+
+<%- include ('partials/navbar.ejs') %>
+<%- include ('partials/header.ejs') %>
+<div class="container-fluid">
+  <h1>Pedidos</h1>
+  <hr />
+  <!-- foreach sem tabela -->
+  <% pedidos.forEach((pedido) => { %>
+  <h5>Produto: <%=pedido.produto%></h5>
+  <h5>Valor: <%=pedido.valor%></h5>
+  <br /><br />
+  <% }) %>
+</div>
+<%- include ('partials/footer.ejs') %>
