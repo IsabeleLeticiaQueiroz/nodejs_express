@@ -19,21 +19,28 @@ app.get("/", (req, res) => {
 //:nome é um parametro obrigatorio
 //:nome? é um parâmetro opcional
 app.get("/perfil/:nome", (req, res) => {
-  res.render("perfil", { nome: nome }); //terminar aqui
+  const nome = req.params.nome; 
+  res.render("perfil", { nome: nome }); 
 });
+
 
 //rota de videos
 //playlist e video? - parametros opcionais
 app.get("/videos/:playlist?/:video?", (req, res) => {
   const playlist = req.params.playlist;
   const video = req.params.video;
-  const listaPLaylists = ["tutoriais", "musicas", "aulas", "vlogs"];
-  const listaVideos = ["Video 1", "Video 2", "Video 3", "Video 4"];
-
+  const playlists = {
+    tutoriais: ["Tutorial 1", "Tutorial 2", "Tutorial 3"],
+    musicas: ["Música 1", "Música 2", "Música 3"],
+    aulas: ["Aula 1", "Aula 2", "Aula 3"],
+    vlogs: ["Vlog 1", "Vlog 2", "Vlog 3"],
+  };
+  const listaPlaylists = Object.keys(playlists);
+  const listaVideos = playlists[playlist] || [];
   res.render("playlist", {
     playlist: playlist,
     video: video,
-    listaPlaylists: listaPLaylists,
+    listaPlaylists: listaPlaylists,
     listaVideos: listaVideos,
   });
 });
@@ -71,7 +78,7 @@ app.get("/pedidos", (req, res) => {
     { produto: "Notebook", valor: 3800 },
   ];
   res.render("pedidos", {
-    pedidos:pedidos
+    pedidos: pedidos,
   });
 });
 // iniciando o servidor na porta 808
