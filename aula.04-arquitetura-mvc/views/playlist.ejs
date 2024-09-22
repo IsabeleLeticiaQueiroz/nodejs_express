@@ -1,0 +1,39 @@
+<%- include ('partials/navbar.ejs') %>
+<%- include ('partials/header.ejs') %>
+<div class="container">
+  <% if (playlist){ %>
+  <h1>Seja bem-vindo à playlist: <%= playlist %></h1>
+  <hr />
+  <% if (video) { %>
+  <h3>Alguns Vídeos da playlist:</h3>
+  <p>Não encontrou o que deseja? Pesquise na barra de navegação</p>
+  <a href="/videos/playlist/<%= video %>">
+    <i class="bi bi-youtube" style="font-size: 80px; color: red"></i>
+    <p style="color: black"><%= video %></p>
+  </a>
+
+  <% } %> <% if (!video){ %>
+  <h3>Alguns Vídeos da playlist:</h3>
+  <p>Não encontrou o que deseja? Pesquise na barra de navegação</p>
+  <% listaVideos.forEach((video) => { %>
+  <a href="/videos/playlist/<%= video %>">
+    <i class="bi bi-youtube" style="font-size: 80px; color: red"></i>
+    <p style="color: black"><%= video %></p>
+  </a>
+
+  <br />
+  <% }); %> <% } %> <% } %> <% if (!playlist) { %>
+  <h3>Playlists recomendadas:</h3>
+  <hr />
+  <% listaPlaylists.forEach((playlist) => { %>
+  <strong>
+    <a href="/videos/<%= playlist %>">
+      <i class="bi bi-list-stars" style="color: black; width: 100px">
+        <p>- <%= playlist %></p>
+      </i>
+    </a>
+  </strong>
+  <br />
+  <% }); %> <% } %>
+</div>
+<%- include ('partials/footer.ejs') %>

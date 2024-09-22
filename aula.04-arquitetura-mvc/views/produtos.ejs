@@ -1,0 +1,22 @@
+<%- include ('partials/navbar.ejs') %>
+<%- include ('partials/header.ejs') %>
+    <div class="container">
+        <h2>Conheca nossos produtos</h2>
+        <hr>
+        <% if (produto){ %>
+        <h4>Você pesquisou por: <strong><%= produto %></strong></h4>
+        <p>Resultados da sua pesquisa:</p>
+        <% } %>
+        <!-- condicao p verificar se o produto nao foi passado -->
+         <!-- ao concatenar uma var utilizar o = dps da tag, caso nao, apenas a tag comum para ser um codigo js -->
+             <% if (!produto){ %>
+                <p><strong>Catálogo:</strong> <%= listaProdutos %></p>
+            <%  } %>
+        <!-- for each para percorrer a lista de produtos -->
+         <% if(!produto){ %>
+            <% listaProdutos.forEach((produto) => { %>
+            <p><a href="/produtos/<%= produto %>"><%= produto %></p></a>
+            <% }) %>
+        <%}%>
+    </div>
+    <%- include ('partials/footer.ejs') %>
